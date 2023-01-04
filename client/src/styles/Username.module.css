@@ -1,3 +1,9 @@
+/* 
+    CSS is Tailwind CSS and @apply is PostCSS format 
+    If you clone this project you need to install PostCSS plugin from vs code Extension 
+    After that only it will work 
+*/
+
 .glass{
     background: rgba(255, 255, 255, 0.55);
     border-radius: 16px;

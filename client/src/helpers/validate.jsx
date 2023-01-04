@@ -8,6 +8,34 @@ export async function usernameValidate(values){
     return errors;
 }
 
+/** Validate login page Password */
+
+export async function passwordValidate(values){
+    const errors = passwordVerify({}, values);
+    return errors;
+}
+
+/** Validate recover password */
+
+export async function resetPasswordValidation(values){
+    const errors = passwordVerify({}, values);
+    if(!values.password !== values.confirm_pwd){
+        errors.exist = toast.error('Password not match...')
+    }
+
+    return errors;
+}
+
+/** Validate register form */
+
+export async function registerValidation(values){
+    const errors = usernameVerify({}, values);
+    passwordVerify(errors, values);
+    emailVerfiy(errors, values);
+
+    return errors;
+}
+
 /** validate username */
 
 function usernameVerify(error = {}, values){
@@ -20,14 +48,7 @@ function usernameVerify(error = {}, values){
     return error;
 }
 
-/** Validate login page Password */
-
-export async function passwordValidate(values){
-    const errors = passwordVerify({}, values);
-
-    return errors;
-}
-/** Validating the password */
+/** Validating password */
 
 function passwordVerify(error = {}, values){
     const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -41,6 +62,20 @@ function passwordVerify(error = {}, values){
         error.password = toast.error('Password must have Special charcters')
     }else{
         toast.success('Login Successfully...')
+    }
+
+    return error;
+}
+
+/** Validate Email */
+
+function emailVerfiy(error = {}, values){
+    if(!values.email){
+        error.email = toast.error("Email Id Requried...")
+    }else if(values.email.includes(" ")){
+        error.email = toast.error("Wrong Email address...")
+    }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
+        error.email = toast.error("Invalid Email address...")
     }
 
     return error;

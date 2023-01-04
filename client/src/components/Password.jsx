@@ -23,7 +23,7 @@ export default function Password() {
 
   return (
     <div className='container mx-auto'>
-    <Toaster position='top-center' reverseOrder={false}></Toaster>
+    <Toaster position='top-right' reverseOrder={false}></Toaster>
       <div className='flex justify-center items-center h-screen'>
         <div className={styles.glass}>
           <div className='title flex flex-col items-center'>
@@ -39,7 +39,7 @@ export default function Password() {
               <button className={styles.btn} type="submit">Login</button>
             </div>
             <div className='text-center py-4'>
-              <span className='text-gray-500'>Forget Password? <Link className='text-red-500' to="/recovery">Recovery Now</Link></span>
+              <span className='text-gray-500'>Forget Password? <Link className='text-red-500' to="/recovery">Recovery now</Link></span>
             </div>
           </form>
         </div>
