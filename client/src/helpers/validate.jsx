@@ -36,6 +36,14 @@ export async function registerValidation(values){
     return errors;
 }
 
+/** validate Profile page */
+
+export async function profilePagevalidation(values){
+    const errors = emailVerfiy({}, values)
+
+    return errors;
+}
+
 /** validate username */
 
 function usernameVerify(error = {}, values){
