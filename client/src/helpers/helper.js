@@ -1,4 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 
 /** Make API Request */
 
@@ -78,7 +80,18 @@ export async function generateOTP(username){
 /** Verify OTP */
 export async function verifyOTP(username, code){
     try {
-        
+        const {data, status} = await axios.get('/api/verifyOTP', {params : {username, code}});
+        return {data, status};
+    } catch (error) {
+        return Promise.reject(error)
+    }
+}
+
+/** Reset Password */
+export async function resetPassword(username, password){
+    try {
+        const {data, status} = await axios.put('/api/resetPassword', {username, password})
+        return Promise.resolve({data, status});
     } catch (error) {
         return Promise.reject(error)
     }
